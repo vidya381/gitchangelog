@@ -25,10 +25,10 @@ NEXT_PUBLIC_API_URL=http://localhost:8080
 
 ## Making changes
 
-Branch off `dev`, not `main`:
+Branch off `main`:
 
 ```bash
-git checkout dev
+git checkout main
 git checkout -b feature/issue-3-commit-parser
 ```
 
@@ -38,7 +38,7 @@ Follow [conventional commits](https://www.conventionalcommits.org/) for your com
 
 ## Opening a PR
 
-- Open your PR against the `dev` branch
+- Open your PR against `main`
 - Reference the issue it closes: `Closes #3`
 - Fill in the PR template
 - Wait for CI to pass before requesting a review
