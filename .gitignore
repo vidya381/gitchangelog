@@ -1,0 +1,19 @@
+.planning/
+
+# Go
+backend/gitchangelog
+backend/*.exe
+
+# Next.js
+frontend/.next/
+frontend/node_modules/
+frontend/out/
+
+# Environment files
+.env
+.env.local
+.env*.local
+
+# OS
+.DS_Store
+Thumbs.db
