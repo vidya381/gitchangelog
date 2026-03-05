@@ -6,6 +6,7 @@ COPY . .
 RUN CGO_ENABLED=0 GOOS=linux go build -o gitchangelog ./cmd/server
 
 FROM scratch
+COPY --from=builder /etc/ssl/certs/ca-certificates.crt /etc/ssl/certs/
 COPY --from=builder /app/gitchangelog /gitchangelog
-EXPOSE 8080
+EXPOSE 8081
 ENTRYPOINT ["/gitchangelog"]
