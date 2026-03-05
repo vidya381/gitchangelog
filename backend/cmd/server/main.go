@@ -2,18 +2,18 @@ package main
 
 import (
 	"log"
-	"net/http"
 
+	"github.com/gin-gonic/gin"
 	"github.com/vidya381/gitchangelog/internal/handler"
 )
 
 func main() {
-	mux := http.NewServeMux()
-	mux.HandleFunc("/health", handler.Health)
+	r := gin.Default()
 
-	addr := ":8080"
-	log.Printf("Server starting on %s", addr)
-	if err := http.ListenAndServe(addr, mux); err != nil {
+	r.GET("/health", handler.Health)
+	r.POST("/api/changelog", handler.Changelog)
+
+	if err := r.Run(":8080"); err != nil {
 		log.Fatalf("Server failed: %v", err)
 	}
 }
