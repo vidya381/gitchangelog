@@ -5,7 +5,7 @@ export async function generateChangelog(payload: {
   to_tag?: string;
   format: "markdown" | "plaintext";
 }) {
-  const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/changelog`, {
+  const res = await fetch("/api/changelog", {
     method: "POST",
     headers: { "Content-Type": "application/json" },
     body: JSON.stringify(payload),
