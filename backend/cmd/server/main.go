@@ -13,7 +13,7 @@ func main() {
 	r.GET("/health", handler.Health)
 	r.POST("/api/changelog", handler.Changelog)
 
-	if err := r.Run(":8080"); err != nil {
+	if err := r.Run(":8081"); err != nil {
 		log.Fatalf("Server failed: %v", err)
 	}
 }
