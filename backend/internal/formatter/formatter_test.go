@@ -70,6 +70,58 @@ func TestToMarkdown_breaking_changes(t *testing.T) {
 	}
 }
 
+func TestToPlainText_sections(t *testing.T) {
+	cl := parser.ParsedChangelog{
+		Features: []parser.ParsedCommit{
+			{Description: "add login page", SHA: "abc1234567"},
+		},
+		BugFixes: []parser.ParsedCommit{
+			{Description: "fix nil pointer", Scope: "api", SHA: "def5678901"},
+		},
+	}
+
+	out := ToPlainText(cl)
+
+	if strings.Contains(out, "###") {
+		t.Error("plain text should not contain markdown headers")
+	}
+	if strings.Contains(out, "**") {
+		t.Error("plain text should not contain markdown bold")
+	}
+	if strings.Contains(out, "http") {
+		t.Error("plain text should not contain links")
+	}
+	if !strings.Contains(out, "Features") {
+		t.Error("expected Features section")
+	}
+	if !strings.Contains(out, "Bug Fixes") {
+		t.Error("expected Bug Fixes section")
+	}
+	if !strings.Contains(out, "add login page") {
+		t.Error("expected feature description")
+	}
+	if !strings.Contains(out, "api: fix nil pointer") {
+		t.Error("expected scope without bold markers")
+	}
+	if !strings.Contains(out, "abc1234") {
+		t.Error("expected short SHA")
+	}
+}
+
+func TestToPlainText_empty_sections_omitted(t *testing.T) {
+	cl := parser.ParsedChangelog{
+		Features: []parser.ParsedCommit{
+			{Description: "add something", SHA: "abc1234567"},
+		},
+	}
+
+	out := ToPlainText(cl)
+
+	if strings.Contains(out, "Bug Fixes") {
+		t.Error("empty Bug Fixes section should not appear")
+	}
+}
+
 func TestToMarkdown_no_repo_url(t *testing.T) {
 	cl := parser.ParsedChangelog{
 		Features: []parser.ParsedCommit{
