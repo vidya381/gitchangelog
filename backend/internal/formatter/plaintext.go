@@ -8,7 +8,7 @@ import (
 )
 
 // ToPlainText formats a parsed changelog into a plain text string.
-// Same structure as ToMarkdown but without headers, links, or formatting.
+// Same structure as ToMarkdown but with Markdown headers (##/###), links, and emphasis markers stripped.
 func ToPlainText(cl parser.ParsedChangelog) string {
 	var b strings.Builder
 
