@@ -55,6 +55,11 @@ export default function Home() {
             to={result.to}
           />
         )}
+        {loading && (
+          <div className="border border-[#3a4a52] bg-[#2b3a42] p-6 font-mono text-sm text-[#e8e8e8] max-h-[500px] overflow-y-auto whitespace-pre-wrap flex items-center justify-center">
+            <span className="text-[#00acd7] animate-pulse">Generating...</span>
+          </div>
+        )}
       </main>
     </div>
   );

@@ -5,8 +5,8 @@ import (
 	"net/http"
 
 	"github.com/gin-gonic/gin"
-	githubclient "github.com/vidya381/gitchangelog/internal/github"
 	"github.com/vidya381/gitchangelog/internal/formatter"
+	githubclient "github.com/vidya381/gitchangelog/internal/github"
 	"github.com/vidya381/gitchangelog/internal/parser"
 )
 
